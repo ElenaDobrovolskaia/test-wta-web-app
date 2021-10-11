@@ -40,6 +40,34 @@ Feature: Smoke testing
       |trailnews |
       |trailaction|
 
+@wta4
+  Scenario Outline:Top menu bar functionality verification
+      Given I open "WTA" page
+      When  I navigate to "<topBarMenuItem>" menu
+      Then I should see the page "<topBarMenuItem>"
+    Examples:
+      |topBarMenuItem|
+      |Our Work      |
+      |Go Outside    |
+      |Get Involved  |
+      |Donate        |
+
+  @wta5
+  Scenario: End-to-end searching hike and saving to backpack
+    Given I open "WTA" page
+    Then  I navigate to "My Backpack" menu
+    Then I choose a "Log In" element in menu
+    Then I login
+    When  I mouse over to "Go Outside" menu
+    Then I choose a "Hiking Guide" element in menu
+    Then I should see the page "Hiking Guide"
+    And I type name of desired hike in search field
+    When I click search button
+    Then I verify search result is contained sought trail
+    Then I move to trail page
+    Then I should see the page "Tolmie Peak Lookout"
+    When I save hike to my backpack
+    Then I verify that hike was successfully saved
 
 
 
