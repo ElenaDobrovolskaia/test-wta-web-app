@@ -108,4 +108,62 @@ public class WtaStepDefs {
     public void iVerifyThatErrorMessageNextToIsNotPresent(String checkbox) {
         assertThat(new WTARegister().isErrorMessageVisible(checkbox)).isFalse();
     }
+    
+        @Then("I should see the page {string}")
+    public void iShouldSeeThePage(String page) {
+        if (page.equals("Donate")){ assertThat(new Donate().getParagraph()).containsIgnoringCase(page);}
+        else { assertThat(new Header().getTitle()).containsIgnoringCase(page);}
+    }
+
+    @When("I mouse over to {string} menu")
+    public void iMouseOverToMenu(String menuName) {
+        new Header().mouseOverElement(menuName);
+    }
+
+    @And("I type name of desired hike in search field")
+    public void iTypeNameOfDesiredHikeInSearchField() {
+        Map<String, String> hikeName = getData("hikes");
+        new HikingGuide().typeHikeName(hikeName.get("hike"));
+    }
+
+    @When("I click search button")
+    public void iClickSearchButton() {
+        new HikingGuide().pushSearchButton();
+    }
+
+    @Then("I verify search result is contained sought trail")
+    public void iVerifySearchResultIsContainedSoughtTrail() {
+        Map<String, String> expectedSearchResult = getData("hikes");
+        boolean isSearchResultReady=new HikingGuide().isSearchResultVisible(expectedSearchResult.get("hike"));
+        assertThat(isSearchResultReady).isTrue();
+        assertThat(new HikingGuide().getActualSearchResult(expectedSearchResult.get("hike"))).containsIgnoringCase(expectedSearchResult.get("hike"));
+    }
+
+    @Then("I move to trail page")
+    public void iMoveToTrailPage() {
+        Map<String, String> hikeName = getData("hikes");
+        new HikingGuide().goToHikePage(hikeName.get("hike"));
+    }
+
+    @When("I save hike to my backpack")
+    public void iSaveHikeToMyBackpack() {
+        new HikingGuide().saveHikeToMyBackpack();
+    }
+
+    @Then("I login")
+    public void iLogin() {
+        Map<String, String> accountCredentials = getData("account");
+        new Login().login(accountCredentials);
+    }
+
+
+    @Then("I verify that hike was successfully saved")
+    public void iVerifyThatHikeWasSuccessfullySaved() {
+        Map<String, String> hikeName = getData("hikes");
+        new Header().goToMyAccount();
+        new Backpack().goToMyHikesAndRecommendations();
+        List<WebElement>savedHikesList=new MyHikesAndRecommendations().getSavedHikesList();
+        assertThat(savedHikesList.contains(hikeName));
+        new MyHikesAndRecommendations().removeHikeFromList(hikeName.get("hike"));
+    }
 }
