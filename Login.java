@@ -14,7 +14,6 @@ public class Login extends Header {
     @FindBy(xpath = "//input[@class='context go-button']")
     private WebElement loginButton;
 
-
     public Landing login(Map<String, String> user) {
         fill(email,user.get("email"));
         fill(password,user.get("password"));
@@ -27,6 +26,4 @@ public class Login extends Header {
         this.password.sendKeys(password);
         loginButton.click();
     }
-
-
 }
