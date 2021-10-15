@@ -63,7 +63,6 @@ public abstract class Page implements Loggable {
         element.sendKeys(value);
     }
 
-
     public void jsClick(WebElement element){
         getExecutor().executeScript("arguments[0].click();",element);
     }
@@ -75,7 +74,5 @@ public abstract class Page implements Loggable {
     public void waitingToBeVisible(WebElement element){
         getWait().until(ExpectedConditions.visibilityOf(element));
     }
-
-
 
 }
