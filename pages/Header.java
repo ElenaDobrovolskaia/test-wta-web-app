@@ -60,7 +60,6 @@ public class Header extends Page {
         click(goOutsideMenu);
         return new OurWork();
     }
-
     public Header goToOurWork() {
         click(ourWorkMenu);
         return new GoOutside();
@@ -77,7 +76,6 @@ public class Header extends Page {
         click(hikingGuide);
         return new HikingGuide();
     }
-
     public Header mouseOverElement(String elemName) {
         switch (elemName) {
             case "Go Outside":
