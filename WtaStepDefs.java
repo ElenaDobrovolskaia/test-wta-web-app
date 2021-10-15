@@ -1,9 +1,10 @@
-package definitions;
+ppackage definitions;
 
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import org.openqa.selenium.WebElement;
 import pages.*;
 
 import java.util.*;
@@ -20,7 +21,7 @@ public class WtaStepDefs {
     public void iOpenPage(String page) {
         switch (page) {
             case "WTA":
-                new WTALanding().open();
+                new Landing().open();
                 break;
             default:
                 throw new RuntimeException("Page not supported");
@@ -31,8 +32,19 @@ public class WtaStepDefs {
     public void iNavigateToMenu(String menuName) {
         switch (menuName) {
             case "My Backpack":
-                new WTALanding()
-                        .goToMyBackpack();
+                new Header().goToMyBackpack();
+                break;
+            case "Our Work":
+                new Header().goToOurWork();
+                break;
+            case "Go Outside":
+                new Header().goToGoOutside();
+                break;
+            case "Get Involved":
+                new Header().goToGetInvolved();
+                break;
+            case "Donate":
+                new Header().goToDonate();
                 break;
             default:
                 throw new RuntimeException("Menu not supported");
@@ -44,20 +56,19 @@ public class WtaStepDefs {
     public void iChooseAElementInMenu(String menuItem) {
         switch (menuItem) {
             case "Dashboard":
-                new WTAHeader()
-                        .goToDashboard();
+                new Header().goToDashboard();
                 break;
             case "Write a Trip Report":
-                new WTAHeader()
-                        .goToTripReport();
+                new Header().goToTripReport();
                 break;
             case "Log In":
-                new WTAHeader()
-                        .goToLogIn();
+                new Header().goToLogIn();
                 break;
             case "Sign Up":
-                new WTAHeader()
-                        .goSignUp();
+                new Header().goSignUp();
+                break;
+            case "Hiking Guide":
+                new Header().goToHikingGuide();
                 break;
             default:
                 throw new RuntimeException("Menu item not supported");
@@ -67,12 +78,12 @@ public class WtaStepDefs {
     @Then("fill out required fields except for Captcha")
     public void fillOutRequiredFieldsExceptForCaptcha() {
         Map<String, String> newAccount = getData("user");
-        new WTARegister().createAccount(newAccount);
+        new Register().createAccount(newAccount);
     }
     @Then("I fill out all fields except for {string}")
     public void iFillOutAllFieldsExceptFor(String field) {
         Map<String,String> userData=getData("user");
-        new WTARegister().fillAllFieldsExceptForOne(userData,field);
+        new Register().fillAllFieldsExceptForOne(userData,field);
 
 
     }
@@ -80,35 +91,35 @@ public class WtaStepDefs {
     @Then("I verify error message appears")
     public void iVerifyErrorMessageAppears() {
         Map<String, String> err = getData("errors");
-        assertThat(new WTARegister().isPortalErrorMessageVisible()).isTrue();
-        assertThat(new WTARegister().isErrorMessageVisible("captcha"));
+        assertThat(new Register().isPortalErrorMessageVisible()).isTrue();
+        assertThat(new Register().isErrorMessageVisible("captcha"));
     }
 
     @Then("I verify that appeared error message next to {string} field is equal to {string}")
     public void iVerifyThatAppearedErrorMessageNextToFieldIsEqualTo(String field, String errMessage) {
-        String actualErrMessage=new WTARegister().getErrorText(field);
+        String actualErrMessage=new Register().getErrorText(field);
         assertThat(actualErrMessage).isEqualTo(errMessage);
     }
 
 
     @And("I submit the form")
     public void iSubmitTheForm() {
-        new WTARegister().submit();
+        new Register().submit();
     }
 
 
     @Then("I uncheck {string} checkbox")
     public void iUncheckCheckbox(String checkBox) {
-        if (!new WTARegister().getCheckBoxStatus(checkBox).equals(null)){
-            new WTARegister().clickUnsubscribe(checkBox);
+        if (!new Register().getCheckBoxStatus(checkBox).equals(null)){
+            new Register().clickUnsubscribe(checkBox);
         }
     }
 
     @Then("I verify that error message next to {string} is not present")
     public void iVerifyThatErrorMessageNextToIsNotPresent(String checkbox) {
-        assertThat(new WTARegister().isErrorMessageVisible(checkbox)).isFalse();
+        assertThat(new Register().isErrorMessageVisible(checkbox)).isFalse();
     }
-    
+
         @Then("I should see the page {string}")
     public void iShouldSeeThePage(String page) {
         if (page.equals("Donate")){ assertThat(new Donate().getParagraph()).containsIgnoringCase(page);}
