@@ -92,8 +92,4 @@ public class Header extends Page {
         String title=getDriver().getTitle();
         return title;
     }
-
-
-
-
 }
