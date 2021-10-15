@@ -1,0 +1,6 @@
+screenName: fullname
+firstName: first_name
+lastName: last_name
+email: email
+zip: postal_code
+captcha: captcha
