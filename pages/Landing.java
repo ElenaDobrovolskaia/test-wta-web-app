@@ -10,8 +10,4 @@ public class Landing extends Header {
 
     @FindBy(xpath="//h1[contains(text(),'Powered by Hikers')]")
     private WebElement PoweredByHikersBanner;
-
-
-
-
 }
