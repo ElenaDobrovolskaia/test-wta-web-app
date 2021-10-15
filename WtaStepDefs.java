@@ -48,7 +48,6 @@ public class WtaStepDefs {
                 break;
             default:
                 throw new RuntimeException("Menu not supported");
-
         }
     }
 
@@ -80,12 +79,11 @@ public class WtaStepDefs {
         Map<String, String> newAccount = getData("user");
         new Register().createAccount(newAccount);
     }
+    
     @Then("I fill out all fields except for {string}")
     public void iFillOutAllFieldsExceptFor(String field) {
         Map<String,String> userData=getData("user");
         new Register().fillAllFieldsExceptForOne(userData,field);
-
-
     }
 
     @Then("I verify error message appears")
@@ -101,12 +99,10 @@ public class WtaStepDefs {
         assertThat(actualErrMessage).isEqualTo(errMessage);
     }
 
-
     @And("I submit the form")
     public void iSubmitTheForm() {
         new Register().submit();
     }
-
 
     @Then("I uncheck {string} checkbox")
     public void iUncheckCheckbox(String checkBox) {
@@ -166,7 +162,6 @@ public class WtaStepDefs {
         Map<String, String> accountCredentials = getData("account");
         new Login().login(accountCredentials);
     }
-
 
     @Then("I verify that hike was successfully saved")
     public void iVerifyThatHikeWasSuccessfullySaved() {
