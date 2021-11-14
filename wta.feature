@@ -27,6 +27,7 @@ Feature: Smoke testing
       |email                 |Required input is missing.|
       |postal_code           |Required input is missing.|
 
+
   @wta3
   Scenario Outline: Verification non-required fields
     Given I open "WTA" page
@@ -41,6 +42,7 @@ Feature: Smoke testing
       |trailnews |
       |trailaction|
 
+
   @wta4
   Scenario Outline:Top menu bar functionality verification
       Given I open "WTA" page
@@ -52,6 +54,7 @@ Feature: Smoke testing
       |Go Outside    |
       |Get Involved  |
       |Donate        |
+
 
   @wta5
   Scenario: End-to-end searching hike and saving to backpack
@@ -69,6 +72,7 @@ Feature: Smoke testing
     Then I should see the page "Tolmie Peak Lookout"
     When I save hike to my backpack
     Then I verify that hike was successfully saved
+
 
   @wta6
   Scenario: End-to-end searching hike and writing trip report
