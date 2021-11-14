@@ -10,12 +10,13 @@ Feature: Smoke testing
     Then I submit the form
     Then  I verify error message appears
 
+
   @wta2
   Scenario Outline: Required fields verification
     Given I open "WTA" page
     Then  I navigate to "My Backpack" menu
     Then I choose a "Sign Up" element in menu
-    Then I fill out all fields except for "<field>"
+    When I fill out all fields except for "<field>"
     And I submit the form
     Then I verify that appeared error message next to "<field>" field is equal to "<errorMessage>"
     Examples:
@@ -40,7 +41,7 @@ Feature: Smoke testing
       |trailnews |
       |trailaction|
 
-@wta4
+  @wta4
   Scenario Outline:Top menu bar functionality verification
       Given I open "WTA" page
       When  I navigate to "<topBarMenuItem>" menu
@@ -68,6 +69,19 @@ Feature: Smoke testing
     Then I should see the page "Tolmie Peak Lookout"
     When I save hike to my backpack
     Then I verify that hike was successfully saved
+
+  @wta6
+  Scenario: End-to-end searching hike and writing trip report
+    Given I open "WTA" page
+    Then  I navigate to "My Backpack" menu
+    Then I choose a "Log In" element in menu
+    Then I login
+    When  I mouse over to "My Account" menu
+    Then I choose a "Write a Trip Report" element in menu
+    Then I write trip report
+    And I verify that trip report was saved successfully
+
+
 
 
 
