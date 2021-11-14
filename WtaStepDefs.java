@@ -102,12 +102,10 @@ public class WtaStepDefs {
         assertThat(actualErrMessage).isEqualTo(errMessage);
     }
 
-
     @And("I submit the form")
     public void iSubmitTheForm() {
         new Register().submit();
     }
-
 
     @Then("I uncheck {string} checkbox")
     public void iUncheckCheckbox(String checkBox) {
@@ -120,7 +118,6 @@ public class WtaStepDefs {
     public void iVerifyThatErrorMessageNextToIsNotPresent(String checkbox) {
         assertThat(new Register().isErrorMessageVisible(checkbox)).isFalse();
     }
-
 
     @Then("I should see the page {string}")
     public void iShouldSeeThePage(String page) {
@@ -171,7 +168,6 @@ public class WtaStepDefs {
         Map<String, String> accountCredentials = getData("account");
         new Login().login(accountCredentials);
     }
-
 
     @Then("I verify that hike was successfully saved")
     public void iVerifyThatHikeWasSuccessfullySaved() {
