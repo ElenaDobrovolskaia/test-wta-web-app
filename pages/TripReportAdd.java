@@ -121,5 +121,4 @@ public class TripReportAdd extends Header{
         click(submitButton);
         return new TripReportAdd();
     }
-
 }
