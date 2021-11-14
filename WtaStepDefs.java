@@ -48,7 +48,6 @@ public class WtaStepDefs {
                 break;
             default:
                 throw new RuntimeException("Menu not supported");
-
         }
     }
 
@@ -88,8 +87,6 @@ public class WtaStepDefs {
     public void iFillOutAllFieldsExceptFor(String field) {
         Map<String, String> userData = getData("user");
         new Register().fillAllFieldsExceptForOne(userData, field);
-
-
     }
 
     @Then("I verify error message appears")
@@ -214,7 +211,6 @@ public class WtaStepDefs {
         new Backpack().goToMyTripReports();
         List<WebElement> myTripReportsList = new MyTripReports().getMyTripReportsList();
         assertThat(myTripReportsList.contains(data.get("hike")));
-
     }
 }
 
