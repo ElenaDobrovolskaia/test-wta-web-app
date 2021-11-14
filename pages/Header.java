@@ -14,17 +14,23 @@ public class Header extends Page {
     @FindBy(xpath = "//a[@id='portrait']")
     private WebElement myAccountIcon;
     @FindBy(id = "personaltools-dashboard")
-    private WebElement dashboardAccountMenu;
+    private WebElement dashboardAccountMenuItem;
     @FindBy(id = "personaltools-trip-report")
-    private WebElement tripReportAccountMenu;
+    private WebElement writeATripReportAccountMenuItem;
     @FindBy(id = "personaltools-login")
-    private WebElement loginAccountMenu;
+    private WebElement loginAccountMenuItem;
+    @FindBy(id = "personaltools-logout")
+    private WebElement logoutAccountMenuItem;
+    @FindBy(id = "personaltools-preferences")
+    private WebElement editProfileAccountMenuItem;
     @FindBy(id = "personaltools-join")
     private WebElement joinAccountMenu;
     @FindBy(xpath = "//li[@id='portaltab-our-work']/a")
     private WebElement ourWorkMenu;
     @FindBy(xpath = "//li[@id='portaltab-go-outside']/a")
     private WebElement goOutsideMenu;
+    @FindBy(xpath = "//li[@id='portaltab-go-outside']//span[contains(text(),'Trip Reports')]")
+    private WebElement tripReportsMenuItem;
     @FindBy(xpath = "//li[@id='portaltab-get-involved']/a")
     private WebElement getInvolvedMenu;
     @FindBy(xpath = "//li[@id='portaltab-donate']/a")
@@ -41,15 +47,21 @@ public class Header extends Page {
         return new Header();
     }
     public Header goToDashboard() {
-        click(dashboardAccountMenu);
+        click(dashboardAccountMenuItem);
         return new Login();
     }
-    public Header goToTripReport() {
-        click(tripReportAccountMenu);
-        return new Login();
+
+    public Header goToTripReports() {
+        click(tripReportsMenuItem);
+        return new TripReports();
     }
+    public Header goToWriteTripReport() {
+        click(writeATripReportAccountMenuItem);
+        return new TripReportAdd();
+    }
+
     public Header goToLogIn() {
-        click(loginAccountMenu);
+        click(loginAccountMenuItem);
         return new Login();
     }
     public Header goSignUp() {
@@ -60,6 +72,7 @@ public class Header extends Page {
         click(goOutsideMenu);
         return new OurWork();
     }
+
     public Header goToOurWork() {
         click(ourWorkMenu);
         return new GoOutside();
@@ -76,10 +89,14 @@ public class Header extends Page {
         click(hikingGuide);
         return new HikingGuide();
     }
+
     public Header mouseOverElement(String elemName) {
         switch (elemName) {
             case "Go Outside":
                 new Actions(getDriver()).moveToElement(goOutsideMenu).perform();
+                break;
+            case "My Account":
+                new Actions(getDriver()).moveToElement(myAccountIcon).perform();
                 break;
             default:
                 throw new RuntimeException("Page not supported");
@@ -90,4 +107,8 @@ public class Header extends Page {
         String title=getDriver().getTitle();
         return title;
     }
+
+
+
+
 }

@@ -11,7 +11,7 @@ import static support.TestContext.getActions;
 import static support.TestContext.getDriver;
 
 public class MyHikesAndRecommendations extends Header {
-   @FindBy(css = "div[class$='backpack-hikes']")
+    @FindBy(css = "div[class$='backpack-hikes']")
     private WebElement savedHikes;
     private WebElement savedHikeCard(String title) {
         return getDriver().findElement(By.xpath("//a[contains(text(),'"+title+"')]"));

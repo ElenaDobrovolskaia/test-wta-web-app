@@ -10,10 +10,10 @@ import java.util.List;
 import static support.TestContext.getDriver;
 
 public class Backpack extends Header{
-
-
     @FindBy(xpath = "//h1[contains(text(), 'My Hikes')]")
     private WebElement myHikesAndRecommendations;
+    @FindBy (xpath = "//h1[contains(text(),'My Trip Reports')]")
+    private WebElement myTripReports;
 
     private WebElement savedHike(String title) {
         return getDriver().findElement(By.xpath("//a[contains(text(),'" + title + "')]"));
@@ -21,6 +21,10 @@ public class Backpack extends Header{
     public MyHikesAndRecommendations goToMyHikesAndRecommendations(){
         click(myHikesAndRecommendations);
         return new MyHikesAndRecommendations();
+    }
+    public MyTripReports goToMyTripReports(){
+        click(myTripReports);
+        return new MyTripReports();
     }
 
 }
