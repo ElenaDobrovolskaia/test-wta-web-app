@@ -83,7 +83,7 @@ Feature: Smoke testing
     And  I mouse over to "My Account" menu
     And I choose a "Write a Trip Report" element in menu
     When I write trip report
-    And I verify that trip report was saved successfully
+    Then I verify that trip report was saved successfully
 
 
 
