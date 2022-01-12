@@ -122,7 +122,7 @@ public class WtaStepDefs {
     @Then("I should see the page {string}")
     public void iShouldSeeThePage(String page) {
         if (page.equals("Donate")) {
-            assertThat(new Donate().getParagraph()).containsIgnoringCase(page);
+            assertThat(new Donate().getPartialContent()).containsIgnoringCase(page);
         } else {
             assertThat(new Header().getTitle()).containsIgnoringCase(page);
         }
